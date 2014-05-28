@@ -20,10 +20,28 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+- (void) setFlipCount:(int)flipCount {
+    _flipCount = flipCount;
+    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)flipCard:(UIButton *)sender {
+    if ([sender.currentTitle length]) {
+        [sender setBackgroundImage:[UIImage imageNamed:@"cardback.png"]
+                          forState:UIControlStateNormal];
+        [sender setTitle:@"" forState:UIControlStateNormal];
+    } else {
+        [sender setBackgroundImage:[UIImage imageNamed:@"cardback.png"]
+                          forState:UIControlStateNormal];
+        [sender setTitle:@"A♣" forState:UIControlStateNormal];
+    }
+    self.flipCount++;
+}
+
 
 @end
